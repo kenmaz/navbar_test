@@ -22,6 +22,21 @@ class SecondViewController: UIViewController, ThemedNavBarController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //hack
+        if isMovingToParent {
+            applyCustomTheme()
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //hack
+        if !isMovingToParent {
+            applyCustomTheme()
+        }
+    }
+
+    private func applyCustomTheme() {
         guard var attr = originalTheme?.titleAttributes else { return }
         attr[NSAttributedString.Key.foregroundColor] = UIColor.white
         guard let style = originalTheme?.barStyle else { return }
