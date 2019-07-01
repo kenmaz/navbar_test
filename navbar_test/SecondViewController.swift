@@ -28,6 +28,13 @@ class SecondViewController: UIViewController, ThemedNavBarController {
         applyCustomTheme(theme: NavBarTheme(tintColor: UIColor.white, backgroundColor: UIColor.black, attributes: attr, barStyle: style))
     }
 
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            restoreOriginalTheme()
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         restoreOriginalTheme()
